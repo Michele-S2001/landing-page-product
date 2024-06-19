@@ -42,10 +42,16 @@ export default function Navbar() {
 
   return (
     <nav className="py-2 relative">
-      <div className="container">
+      <div className="container-nav">
         <div className="flex justify-between items-center">
           <a href="#"><img className="max-w-10" src="./imgs/logo.png" alt="Logo "/></a>
+          <ul className="leading-10 hidden md:flex gap-6 lg:gap-10">
+            {navLinks.map((el, idx) => (
+              <li key={idx}><a href={el.link}>{el.label}</a></li>
+            ))}
+          </ul>
           <button 
+            className="md:hidden"
             onClick={toggleMobileMenu}
             aria-expanded={mobileMenuExpanded}
             aria-label="apri menu laterale">
@@ -53,12 +59,12 @@ export default function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
-
+          
           {/* MOBILE MENU */}
-          <div className="mobile-menu fixed top-0 left-0 right-0 bottom-0 flex z-20 ">
-            <div className="overlay basis-3/12 bg-black/50"></div>
+          <div className={`mobile-menu fixed top-0 left-0 right-0 bottom-0 flex md:hidden ${!mobileMenuExpanded ? '-z-20' : 'z-20'} transition-all ease-in duration-400`}>
+            <div className={`overlay basis-3/12 bg-black/50 ${!mobileMenuExpanded ? 'opacity-0' : 'opacity-100'} transition-opacity ease-in duration-200`}></div>
 
-            <div className="menu-content basis-9/12 bg-white p-4">
+            <div className={`menu-content basis-9/12 bg-white p-4 ${!mobileMenuExpanded ? 'translate-x-140' : 'translate-x-0'} transition-transform ease-in duration-300`}>
               <div className="flex justify-between mb-6">
                 <img className="max-w-10" aria-hidden="true" src="./imgs/logo.png"/>
                 <button
