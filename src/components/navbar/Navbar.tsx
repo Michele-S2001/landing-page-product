@@ -5,6 +5,12 @@ interface navLink {
   link: string;
 }
 
+export function NavLink({ element, idx }: { element: navLink, idx: number}) {
+  return (
+    <li className="hover:text-white hover:bg-gray-600 active:bg-main-blue px-2 transition-colors duration-150 ease-in-out" key={idx}><a href={element.link}>{element.label}</a></li>
+  )
+}
+
 export default function Navbar() {
 
   const navLinks: navLink[] = [
@@ -46,9 +52,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <a href="#"><img className="max-w-10" src="./imgs/logo.png" alt="Logo "/></a>
           <ul className="leading-10 hidden md:flex gap-6 lg:gap-10">
-            {navLinks.map((el, idx) => (
-              <li key={idx}><a href={el.link}>{el.label}</a></li>
-            ))}
+            {navLinks.map((el, idxn) => (<NavLink element={el} idx={idxn}/>))}
           </ul>
           <button 
             className="md:hidden"
@@ -76,9 +80,7 @@ export default function Navbar() {
                 </button>
               </div>
               <ul className="leading-10">
-                {navLinks.map((el, idx) => (
-                  <li key={idx}><a href={el.link}>{el.label}</a></li>
-                ))}
+              {navLinks.map((el, idxn) => (<NavLink element={el} idx={idxn}/>))}
               </ul>
             </div>
           </div>

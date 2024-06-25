@@ -16,6 +16,9 @@ export default {
           xl: '1300px',  
         },
       },
+      colors: {
+        'main-blue': '#2E45CC'
+      },
       translate: {
         '140': '140%',
       }
